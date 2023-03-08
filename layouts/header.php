@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Aplikasi Pengaduan Masyarakat</title>
   <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
-<body>
+<body> 
 	<nav class="navbar navbar-expand-lg bg-body-tertiarity bg-warning">
   <div class="container">
     <a class="navbar-brand" href="index.php">Aplikasi Pengaduan Masyarakat</a>
