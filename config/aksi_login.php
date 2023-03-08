@@ -37,7 +37,7 @@ if ($cek > 0){
     } 
 }else{
     echo "<script>
-    alert('Username atau Password tidak terdaftar!');
+    alert('Username atau Password tidak sesuai!');
     window.location='../index.php';
     </script>";
 };

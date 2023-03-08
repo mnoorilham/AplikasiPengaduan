@@ -3,9 +3,9 @@
         include '../config/koneksi.php';
         $tanggal = date('Y-m-d');
         if (isset($_POST['btn_kirim'])){
-            $nik = $_SESSION['nik'];
-            $judul_laporan = $_POST['judul_laporan'];
-            $isi_laporan = $_POST['isi_laporan'];
+            $nik = htmlspecialchars($_SESSION['nik']);
+            $judul_laporan = htmlspecialchars($_POST['judul_laporan']);
+            $isi_laporan = htmlspecialchars($_POST['isi_laporan']);
             $status = 0;
             $foto = $_FILES['foto']['name'];
             $tmp = $_FILES['foto']['tmp_name'];

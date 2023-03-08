@@ -4,16 +4,16 @@
 <h4 class="text-left mt-3">Data Pengaduan</h4>
     <hr>
         <div class="card" style="overflow-y:scroll; max-height:500px;">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Nama Pelapor</th>
-                    <th scope="col">Judul Pengaduan</th>
-                    <th scope="col">Foto</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col">NO</th>
+                    <th scope="col">TANGGAL</th>
+                    <th scope="col">NAMA PELAPOR</th>
+                    <th scope="col">JUDUL PENGADUAN</th>
+                    <th scope="col">FOTO</th>
+                    <th scope="col">STATUS</th>
+                    <th scope="col">AKSI</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +45,10 @@
                     <td>
                         <!-- Section Button Modal-->
                         <!-- Modal Verifikasi -->
-                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalVerifikasi<?php echo $data['id_pengaduan'] ?>">Verifikasi</a>               
+                    <?php 
+                    if ($data['status'] != 'selesai') { ?>
+                    
+                    <a href="" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalVerifikasi<?php echo $data['id_pengaduan'] ?>">Verifikasi</a>               
                     <div class="modal fade" id="modalVerifikasi<?php echo $data['id_pengaduan'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -89,8 +92,11 @@
                         </div>
                     </div>
                     </div>
+                    <?php } ?>
                         <!-- Modal Tanggapi -->
-                    <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTanggapi<?php echo $data['id_pengaduan'] ?>">Tanggapi</a>               
+                    <?php 
+                    if ($data['status'] == 'proses') { ?>
+                    <a href="" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalTanggapi<?php echo $data['id_pengaduan'] ?>">Tanggapi</a>               
                     <div class="modal fade" id="modalTanggapi<?php echo $data['id_pengaduan'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -142,7 +148,7 @@
                             $id_pengaduan = $_POST['id_pengaduan'];
                             $id_petugas = $_SESSION['id_petugas'];
                             $tanggal = date("Y-m-d");
-                            $tanggapan = $_POST['tanggapan'];
+                            $tanggapan = htmlspecialchars($_POST['tanggapan']);
 
                             $query = mysqli_query($koneksi, "INSERT INTO tbl_tanggapan VALUES ('', '$id_pengaduan', '$tanggal', '$tanggapan', '$id_petugas')");
                             if ($tanggapan != NULL) {
@@ -159,8 +165,9 @@
                         </div>
                     </div>
                     </div>
+                    <?php } ?>
                         <!-- Modal Hapus -->
-                        <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?php echo $data['id_pengaduan'] ?>">Hapus</a>               
+                        <a href="" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?php echo $data['id_pengaduan'] ?>">Hapus</a>               
                     <div class="modal fade" id="modalHapus<?php echo $data['id_pengaduan'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -174,7 +181,7 @@
                             <p>Apakah anda yakin ingin menghapus data <br><?php echo $data['judul_laporan'] ?> ?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger" name="btn_hapus">Hapus</button>
+                            <button type="submit" class="btn btn-danger" name="btn_hapus_pengaduan">Hapus</button>
                         </div>
                         </form>
                         </div>

@@ -41,12 +41,12 @@
         <table class="table table-striped" >
             <thead>
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Judul</th>
-                    <th scope="col">Isi</th>
-                    <th scope="col">Foto</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col">NO</th>
+                    <th scope="col">JUDUL PENGADUAN</th>
+                    <th scope="col">ISI PENGADUAN</th>
+                    <th scope="col">FOTO</th>
+                    <th scope="col">STATUS</th>
+                    <th scope="col">AKSI</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,8 +57,9 @@
                 $no = 1;
                 $nik = $_SESSION['nik'];
                 $tampil_data = mysqli_query($koneksi, "SELECT * FROM tbl_pengaduan
-                WHERE $nik='$nik' ORDER BY id_pengaduan DESC");
-               
+                WHERE nik='$nik'");
+                if (mysqli_num_rows ($tampil_data)){
+                
                 while ($data = mysqli_fetch_array($tampil_data)) { ?>
                 <tr>
                     
@@ -72,19 +73,14 @@
                             echo "<span class='badge bg-warning'>Proses</span>";
                         } elseif ($data['status'] =='selesai') {
                             echo "<span class='badge bg-success'>Selesai</span>";
-                           
-                            
+                            echo "<br><a href='index.php?page=tanggapan&id_pengaduan=$data[id_pengaduan]'>Lihat Tanggapan</a>";
                         } else {
                             echo "<span class='badge bg-danger'>Menunggu</span>";
                         }
                         ?>
                     </td>
                     <td>
-                    <?php
-                        if ($data['status'] =='selesai') {
-                            echo "<a href='tampil.php'class='btn btn-info'>Lihat Tanggapan</a>";
-                        }
-                        ?>
+                   
                         <!-- Modal Hapus -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?php echo $data['id_pengaduan'] ?>">
                         Hapus
@@ -111,7 +107,9 @@
                         </div>
                     </td>
                 </tr>    
-              <?php } ?>      
+              <?php } } else{
+                echo '<tr><td colspan="8" align="center">Belum Ada Pengaduan!</td></tr>';
+              } ?>      
             </tbody>
         </table>
             

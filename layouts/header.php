@@ -19,13 +19,18 @@
           <?php 
           if ($_SESSION['login']=='admin') { ?>
             <a class="nav-link bg-success" href="index.php">Kembali</a>
+            <a class="nav-link bg-info" href="index.php?page=masyarakat">Data Masyarakat</a>
+            <a class="nav-link bg-info" href="index.php?page=petugas">Data Petugas</a>
             <a class="nav-link bg-info" href="index.php?page=pengaduan">Data Pengaduan</a>
+            <a class="nav-link bg-info" href="index.php?page=tanggapan">Data Tanggapan</a>
             <a class="nav-link bg-danger" href="../config/aksi_logout.php">Keluar</a>
           <?php }elseif ($_SESSION['login']=='petugas'){ ?>
-            <a class="nav-link" href="index.php?page=pengaduan">Data Pengaduan</a>
-            <a class="nav-link btn btn-danger" href="../config/aksi_logout.php" Keluar</a>
+            <a class="nav-link bg-success" href="index.php">Kembali</a>
+            <a class="nav-link bg-info" href="index.php?page=pengaduan">Data Pengaduan</a>
+            <a class="nav-link bg-info" href="index.php?page=tanggapan">Data Tanggapan</a>
+            <a class="nav-link bg-danger" href="../config/aksi_logout.php">Keluar</a>
           <?php }elseif ($_SESSION['login']=='masyarakat'){ ?>
-            <a class="nav-link btn btn-danger" href="../config/aksi_logout.php">Keluar</a>
+            <a class="nav-link bg-danger" href="../config/aksi_logout.php">Keluar</a>
         
           <?php }else{ ?>
             

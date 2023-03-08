@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2023 at 05:28 AM
+-- Generation Time: Mar 08, 2023 at 10:49 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -41,7 +41,8 @@ CREATE TABLE `tbl_masyarakat` (
 --
 
 INSERT INTO `tbl_masyarakat` (`nik`, `nama`, `username`, `password`, `telp`, `level`) VALUES
-('112313', 'Muhammad Noor Ilham', 'ilham123', 'e10adc3949ba59abbe56e057f20f883e', '0812678323', 'masyarakat');
+('112313', 'Muhammad Noor Ilham', 'ilham123', 'e10adc3949ba59abbe56e057f20f883e', '0812678323', 'masyarakat'),
+('121313', 'Andre Toriq', 'andre32', 'dd573120e473c889140e34e817895495', '08126749924', 'masyarakat');
 
 -- --------------------------------------------------------
 
@@ -64,14 +65,9 @@ CREATE TABLE `tbl_pengaduan` (
 --
 
 INSERT INTO `tbl_pengaduan` (`id_pengaduan`, `tgl_pengaduan`, `nik`, `judul_laporan`, `isi_laporan`, `foto`, `status`) VALUES
-(15, '2023-03-07', '112313', 'Orang Utan Tersesat', 'Ditemukan orang utan dan anaknya nyasar ke rumah warga setempat diduga karena habitatnya telah diambil alih oleh perusahaan asing', '465-orang utan nyasar.jpg', 'selesai'),
-(16, '2023-03-07', '112313', 'Kucing Nyangkut', 'Kucing nyangkut di spion mobil dekat kantor desa sunda empire', '511-kucing nyangkut.jpg', '0'),
-(18, '2023-03-07', '112313', 'Jalan Berlubang', 'sad', '276-jalan berlubang.jpg', '0'),
-(19, '2023-03-07', '112313', 'Jalan Rusak', 'adas', '313-banjir.jpg', '0'),
-(20, '2023-03-07', '112313', 'Jalan Rusak', 'adas', '225-banjir.jpg', '0'),
-(21, '2023-03-07', '112313', 'Jalan Rusak', 'adas', '596-banjir.jpg', 'proses'),
-(22, '2023-03-07', '112313', 'Jalan Rusak', 'adas', '966-banjir.jpg', '0'),
-(23, '2023-03-07', '112313', 'Jalan Rusak', 'adas', '579-banjir.jpg', 'proses');
+(25, '2023-03-08', '112313', 'Jalan Berlubang', 'SssASAdD', '17-jalan berlubang.jpg', 'selesai'),
+(26, '2023-03-08', '112313', 'Banjir', 'asdsad', '515-banjir.jpg', 'selesai'),
+(27, '2023-03-08', '112313', 'Kucing Nyangkut', 'wewe', '486-kucing nyangkut.jpg', 'proses');
 
 -- --------------------------------------------------------
 
@@ -105,7 +101,7 @@ INSERT INTO `tbl_petugas` (`id_petugas`, `nama_petugas`, `username`, `password`,
 CREATE TABLE `tbl_tanggapan` (
   `id_tanggapan` int(11) NOT NULL,
   `id_pengaduan` int(11) NOT NULL,
-  `tgl_pengaduan` date NOT NULL,
+  `tgl_tanggapan` date NOT NULL,
   `tanggapan` text NOT NULL,
   `id_petugas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -114,12 +110,9 @@ CREATE TABLE `tbl_tanggapan` (
 -- Dumping data for table `tbl_tanggapan`
 --
 
-INSERT INTO `tbl_tanggapan` (`id_tanggapan`, `id_pengaduan`, `tgl_pengaduan`, `tanggapan`, `id_petugas`) VALUES
-(1, 12, '2023-03-07', 'Segera dilaksanakan', 1),
-(2, 13, '2023-03-07', 'asddad', 1),
-(3, 13, '2023-03-07', '', 1),
-(4, 13, '2023-03-07', '31313', 1),
-(5, 15, '2023-03-07', 'Sahhhh', 1);
+INSERT INTO `tbl_tanggapan` (`id_tanggapan`, `id_pengaduan`, `tgl_tanggapan`, `tanggapan`, `id_petugas`) VALUES
+(16, 26, '2023-03-08', 'wew', 1),
+(17, 25, '2023-03-08', 'asdadsa', 1);
 
 --
 -- Indexes for dumped tables
@@ -135,7 +128,8 @@ ALTER TABLE `tbl_masyarakat`
 -- Indexes for table `tbl_pengaduan`
 --
 ALTER TABLE `tbl_pengaduan`
-  ADD PRIMARY KEY (`id_pengaduan`);
+  ADD PRIMARY KEY (`id_pengaduan`),
+  ADD KEY `nik` (`nik`);
 
 --
 -- Indexes for table `tbl_petugas`
@@ -147,7 +141,9 @@ ALTER TABLE `tbl_petugas`
 -- Indexes for table `tbl_tanggapan`
 --
 ALTER TABLE `tbl_tanggapan`
-  ADD PRIMARY KEY (`id_tanggapan`);
+  ADD PRIMARY KEY (`id_tanggapan`),
+  ADD KEY `id_pengaduan` (`id_pengaduan`),
+  ADD KEY `id_petugas` (`id_petugas`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -157,19 +153,36 @@ ALTER TABLE `tbl_tanggapan`
 -- AUTO_INCREMENT for table `tbl_pengaduan`
 --
 ALTER TABLE `tbl_pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tbl_petugas`
 --
 ALTER TABLE `tbl_petugas`
-  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_tanggapan`
 --
 ALTER TABLE `tbl_tanggapan`
-  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tbl_pengaduan`
+--
+ALTER TABLE `tbl_pengaduan`
+  ADD CONSTRAINT `tbl_pengaduan_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `tbl_masyarakat` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_tanggapan`
+--
+ALTER TABLE `tbl_tanggapan`
+  ADD CONSTRAINT `tbl_tanggapan_ibfk_1` FOREIGN KEY (`id_petugas`) REFERENCES `tbl_petugas` (`id_petugas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_tanggapan_ibfk_2` FOREIGN KEY (`id_pengaduan`) REFERENCES `tbl_pengaduan` (`id_pengaduan`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

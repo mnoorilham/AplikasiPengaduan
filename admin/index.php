@@ -1,6 +1,9 @@
 <!-- Index Halaman Admin -->
 <?php 
 session_start();
+if (empty ($_SESSION['login'] == 'admin' || $_SESSION['login'] =='petugas')) {
+  header('location:../index.php');
+}
 include '../layouts/header.php';
   if (isset($_GET['page'])) {
     $page= $_GET['page'];

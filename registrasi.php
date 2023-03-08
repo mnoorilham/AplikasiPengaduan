@@ -29,7 +29,7 @@
 					</div>
 			</div>
 			<div class="card-footer">
-				<button type="submit" name="kirim" class="btn btn-danger">DAFTAR</button>
+				<button type="submit" name="kirim" class="btn btn-outline-success">Daftar</button>
 				<a href="index.php?page=login" class="m-3">Sudah memiliki akun? Login di sini!</a>
 			</div>
 		</form>
